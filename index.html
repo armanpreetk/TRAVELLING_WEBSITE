@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WANDER INDIA</title>
+    <!--font-awesome--->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+</head>
+<style> 
+    body{
+        height: 300rem;
+    }
+    /*navbar*/
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap');
+    :root{
+        --pink: orange;
+    }
+
+    *{
+        font-family:'Nunito',sans-serif;
+        margin:0;
+        padding:0;
+        box-sizing: border-box;
+        text-transform: capitalize;
+        outline: none;
+        border:none;
+        text-decoration: none;
+        transition: all .2s linear;
+    }
+
+    html{
+        font-size: 62.5%;
+        overflow-x: hidden;
+        scroll-padding-top: 6rem;
+        scroll-behavior: smooth;
+    }
+
+    .btn{
+        display:inline-block;
+        margin-top: 1rem;
+        background: var(--pink);
+        color:#fff;
+        padding: .8rem 3rem;
+        border: .2rem solid ;
+        cursor: pointer;
+        font-size: 1.7rem;
+    }
+
+    .btn:hover{
+        background: rgb(21, 74, 74);
+    }
+
+    header{
+        position: fixed;
+        top:0; left:0; right:0;
+        background: rgb(21, 74, 74);
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.5rem 5%;
+    }
+
+    header .logo{
+        font-size: 2.4rem;
+        font-weight: bolder;
+        color: #fff;
+        text-transform: uppercase;
+    }
+
+    header .logo span{
+        color: var(--pink);
+    }
+
+    header .navbar a{
+        color: #fff;
+        font-size: 2rem;
+        margin: 0 .8rem;
+    }
+
+    header .navbar a:hover{
+    color:var(--pink);
+    }
+
+    header .icons i{
+        font-size: 2.4rem;
+        color:#fff;
+        margin-right: 2rem;
+    }
+    
+    header .navbar a:hover,
+    header .icons i:hover,
+    header .icons #login-btn:hover {
+        color: var(--pink) !important;
+    }
+
+
+    header .search-bar-container label:hover{
+        color: var(--pink);
+    }
+
+    .login-form-container{
+        position:fixed;
+        top:-100%; left:0;
+        min-height:100vh;
+        width:100%;
+        z-index: 10000;
+        background: rgb(21, 74, 74, .7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: top 0.3s ease; /* Add smooth transition for appearance */
+    }
+
+    .login-form-container.active {
+        top: 0;
+    }
+
+    .login-form-container form{
+        margin: 2rem;
+        padding: 1.4rem 2rem;
+        border-radius: .5rem;
+        background: #fff;
+        width: 50rem;
+    }
+
+    .login-form-container form h3{
+        font-size: 3rem;
+        color: black;
+        text-transform: uppercase;
+        text-align: center;
+        padding: 1rem 0;
+    }
+
+    .login-form-container form .box{
+        width: 100%;
+        padding: 1rem;
+        font-size: 1.7rem;
+        color: rgb(21, 74, 74);
+        margin: .6rem 0;
+        border: .2rem solid rgb(21, 74, 74, .7);
+        text-transform: none;
+    }
+
+    .login-form-container form .box:focus{
+        border-color: var(--pink);
+    }
+
+    .login-form-container form #remember{
+        margin: 2rem 0;
+    }
+
+    .login-form-container form label{
+        font-size: 1.5rem;;
+    }
+
+    .login-form-container form .btn{
+        display:block;
+        width:100%;
+    }
+
+    .login-form-container form p{
+        padding: .5rem 0;
+        font-size: 1.5rem;
+        color: black;
+    }
+
+    .login-form-container form p a{
+        color: var(--pink);
+    }
+
+    .login-form-container form p a:hover{
+        color: black;
+        text-decoration: underline;
+    }
+
+    .login-form-container #form-close{
+        position: absolute;
+        top: 2rem; right:3rem;
+        font-size: 5rem;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    #menu-bar{
+        color:#fff;
+        border: .1rem solid #fff;
+        border-radius: .2rem;
+        font-size: 3rem;
+        padding: .5rem 1.2rem;
+        cursor: pointer;
+        display:none;
+    }
+
+    /* media queries*/
+    @media(max-width:1200px){
+        html{
+            font-size: 55%;
+        }
+    }
+    @media(max-width:991px){
+        header{
+            padding: 2rem;
+        }
+        section{
+            padding: 2rem;
+        }
+    }
+    @media(max-width:768px){
+        #menu-bar{
+            display: initial;
+        }
+        header .navbar{
+            position: absolute;
+            top: 100%; right:0; left:0;
+            background: rgb(21, 74, 74);
+            border-top: .1rem solid rgb(21, 74, 74);
+            padding: 1rem 2rem;
+            clip-path: polygon(0 0, 100% 0, 100% 0 , 0 0);
+        }
+        header .navbar.active{
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        }
+        header .navbar a{
+            display: block;
+            border-radius: .5rem;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            background: rgb(39, 110, 110);
+        }
+    }
+    @media(max-width:450px){
+        html{
+            font-size: 50%;
+        }
+        .heading span{
+             font-size: 2.5rem;
+        }
+    }
+
+    /*slider*/
+    .home{
+        min-height:100vh;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        flex-flow:column;
+        position: relative;
+        z-index: 0;
+    }
+    section{
+        padding: 2rem 9%;
+    }
+    
+    .home{
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        flex-flow: column;
+        position: relative;
+        z-index: 0;
+        min-height: 100vh;
+    }
+
+    .home .title{
+        text-align: center;
+    }
+
+.title{
+    text-decoration: none;
+    /* display: inline-block; */
+    font-size: 4vh;
+    color: rgb(255, 255, 255);
+    padding: 14px 17px;
+    margin-top: 15vh;
+    text-align: center;
+    vertical-align: center;
+}
+
+.title h2{
+    font-size: 10vh;
+    text-shadow: 2px black;
+    transition: ease 0.3s;
+}
+
+.title h2:hover{
+    color:transparent;
+    -webkit-text-stroke: 1px white; 
+}
+
+.home .video-container video{
+    position: absolute;
+    top:0; left:0;
+    z-index:-1;
+    height: 100%;
+    width: 100%;
+    object-fit:cover;
+}
+
+.home .controls{
+    padding: 1rem;
+    border-radius: 5rem;
+    background: rgb(21, 74, 74);
+    position: relative;
+    top: 10rem;
+}
+
+.home .controls .vid-btn{
+    height: 1.5rem;
+    width: 1.5rem;
+    display: inline-block;
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+    margin: 0.5rem;
+}
+
+.home .controls .vid-btn.active{
+    background: var(--pink);
+}
+
+/* About Us Section */
+.about-us-section {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 60px 80px;
+    align-items: center;
+    gap: 20px;
+}
+
+.about-us-section .text-content,
+.about-us-section .image-content {
+    flex: 1;
+}
+
+.about-us-section .text-content {
+    padding-right: 20px; /* Reduced padding for smaller screens */
+}
+
+.about-us-section .image-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-us-section .image-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.about-us-section h2 {
+    border-bottom: 2px solid rgb(21, 74, 74);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+.about-us-section h5 {
+    font-size: 1.8rem; /* Increase the font size */
+}
+
+.about-us-section h2 {
+    font-size: 2.8rem; /* Increase the font size */
+}
+
+.about-us-section p {
+    font-size: 1.4rem; /* Increase the font size */
+    text-transform: none;
+}
+
+.about-us-section img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+    .about-us-section {
+        padding: 40px 20px;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-us-section .text-content,
+    .about-us-section .image-content {
+        padding-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .about-us-section .image-content img {
+        max-width: 90%;
+    }
+}
+
+/*packages*/
+
+.heading {
+    text-align: center;
+    padding: 2.5rem 0;
+    color: rgb(21, 74, 74);
+}
+
+.heading span {
+    font-size: 3.5rem;
+    background: rgba(255, 165, 0, .2);
+    color: var(--pink);
+    border-radius: .5rem;
+    padding: .2rem 1rem;
+}
+
+.heading span.space {
+    background: none;
+}
+
+
+.packages .box-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.packages .box-container .box{
+    flex: 1 1 30rem;   
+    border-radius: .5rem;
+    overflow: hidden;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.3);
+}
+
+.packages .box-container .box img{
+    height: 25rem;
+    width: 100%;
+    object-fit: cover;
+}
+
+.packages .box-container .box .content{
+    padding: 2rem;
+}
+
+.packages .box-container .box .content h3{
+    font-size: 2rem;
+    color: rgb(21, 74, 74);
+}
+
+.packages .box-container .box .content h3 i{
+    color: var(--pink);
+}
+
+.packages .box-container .box .content p{
+    font-size: 1.7rem;
+    padding: 1rem 0;
+}
+
+.packages .box-container .box .content .stars i{
+    font-size: 1.7rem;
+    color:var(--pink);
+}
+
+.packages .box:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/*services*/
+.services .box-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.services .box-container .box{
+    flex: 1 1 30rem;
+    border-radius: .5rem;
+    padding: 1rem;
+    text-align: center;
+}
+
+.services .box-container .box i{
+    padding: 1rem;
+    font-size: 7rem;
+    color: #333;
+}
+
+.services .box-container .box h3{
+    font-size: 2.0rem;
+    color: #333;
+}
+
+.services .box-container .box p{
+    font-size: 1.5rem;
+    color: #333;
+    padding: 1rem 0;
+    text-transform: none;
+}
+
+/*events*/
+    .gallery .box-container{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+    }
+    .gallery .box-container .box{
+        overflow: hidden;
+        box-shadow: 0 1rem 2rem rgba(0,0,0,.1);
+        border: 1rem solid  #fff;
+        border-radius:.5rem;
+        flex:1 1 30rem;
+        height: 25rem;
+        position: relative;
+    }
+    .gallery .box-container .box img{
+        height: 100%;
+        width: 100%;
+        object-fit: cover;      
+    }
+    .gallery .box-container .box .content{
+        position: absolute;
+        top: -100%; left: 0;
+        height: 100%;
+        width: 100%;
+        text-align: center;
+        background: rgba(0,0,0,0.7);
+        padding:2rem;
+        padding-top: 5rem;
+    }
+    .gallery .box-container .box:hover .content{
+        top:0;
+    }
+    .gallery .box-container .box .content h3{
+        font-size: 2.5rem;
+        color: var(--pink);
+    }
+    .gallery .box-container .box .content p{
+        font-size: 1.5rem;
+        color: #eee;
+        padding: .5rem 0; 
+        text-transform: none;
+    }
+
+/*footer*/
+.footer{
+            background: rgb(21, 74, 74);
+        }
+        .footer .box-container{
+            display: flex;
+            flex-wrap:wrap;
+            gap:1.5rem;
+        }
+        .footer .box-container .box{
+            padding: 1rem 0;
+            flex: 1 1 25rem;
+        }
+        .footer .box-container .box h3{
+            font-size:2rem;
+            padding:.7rem;
+            color: #fff;
+
+        }
+        .footer .box-container .box p{
+            font-size:1.5rem;
+            padding:.7rem;
+            color: #eee;
+        }
+        .footer .box-container .box a{
+            display:block;
+            font-size:1.5rem;
+            padding:.7rem;
+            color: #fff;
+            
+        }
+        .footer .box-container .box a:hover{
+            color:var(--pink);
+            text-decoration: underline;
+        }
+        .footer .credit{
+            text-align: center;
+            padding:2rem 1rem;
+            margin-top: 1rem;
+            font-size: 1.5rem;
+            font-weight: normal;
+            color:#fff;
+            border-top: .1rem solid rgba(255, 255, 255, .2);
+        }
+        .footer .credit span{
+            color: var(--pink);
+        }
+
+</style>
+<body>
+    <!--navbar-->
+    <header>
+        <div id="menu-bar" class="fas fa-bars"></div>
+        <a href="#" class="logo"><span>WANDER</span> INDIA</a>
+        <nav class="navbar">
+            <a href="#home">Home</a>
+            <a href="destination.html">Destinations</a>
+            <a href="packages.html">Packages</a>
+            <a href="#">Events</a>
+            <a href="agent.html">Login</a>
+        </nav>
+    <div class="icons">
+        <i class="fas fa-user" id="login-btn"></i>   
+    </div>
+    </header>
+
+ <!--login-form-container-->
+    <div class="login-form-container">
+        <i class="fas fa-times" id="form-close"></i>
+        <form action="">
+            <h3>Login</h3>
+            <input type="email" class="box" placeholder="Enter your email">
+            <input type="password" class="box" placeholder="Enter your password">
+            <input type="submit" value="login now" class="btn">
+            <input type="checkbox" id="remember">
+            <label for="remember">Remember me</label>
+            <p>Forgot password? <a href="#">Click here</a></p>
+            <p>Don't have an account? <a href="#">Register now</a> </p>
+        </form>
+    </div>
+    
+<!--login-page-->
+<script>
+    let formBtn = document.querySelector('#login-btn');
+    let loginForm = document.querySelector('.login-form-container');
+    let formClose = document.querySelector('#form-close');
+    let menu = document.querySelector('#menu-bar');
+    let navbar = document.querySelector('.navbar');
+    document.addEventListener('DOMContentLoaded', () => {
+    let videoBtns = document.querySelectorAll('.vid-btn');
+    let videoSlider = document.querySelector('#video-slider');
+
+    videoBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Remove the active class from the currently active button
+            const activeBtn = document.querySelector('.controls .vid-btn.active');
+            if (activeBtn) {
+                activeBtn.classList.remove('active');
+            }
+            // Add the active class to the clicked button
+            btn.classList.add('active');
+
+            // Update the source of the video slider
+            let src = btn.getAttribute('data-src');
+            console.log(`Changing video source to: ${src}`); // Debug log
+            videoSlider.src = src;
+        });
+    });
+});
+    window.onscroll = () => {
+        menu.classList.remove('fa-times'); 
+        navbar.classList.remove('active');
+    }
+    menu.addEventListener('click', () => {
+    menu.classList.toggle('fa-times'); 
+    navbar.classList.toggle('active');   
+    });
+    formBtn.addEventListener('click', () => {
+    loginForm.classList.add('active'); // Add class to show form
+    });
+    formClose.addEventListener('click', () => {
+    loginForm.classList.remove('active'); // Remove class to hide form
+    });
+
+</script>
+<!------------------------------------------------------------------------------------------------------------>
+<!--home-section-->
+<section class="home" id="home">
+    <div class="title">
+        <h2>WANDER INDIA</h2>
+        <p>Plan your trip with us and travel around the world with the most affordable packages!</p>
+    </div>
+    <div class="controls">
+        <span class="vid-btn active" data-src="vid0.mp4"></span>
+        <span class="vid-btn" data-src="vid1.mp4"></span>
+        <span class="vid-btn" data-src="vid2.mp4"></span>
+        <span class="vid-btn" data-src="vid3.mp4"></span>
+        <span class="vid-btn" data-src="vid4.mp4"></span>
+    </div>
+    <div class="video-container">
+        <video src="vid0.mp4" id="video-slider" loop autoplay muted></video>
+    </div>
+</section>
+
+
+<!-- About Us Section -->
+<div class="about-us-section">
+    <div class="text-content">
+        <h5>We're thrilled to have you with us</h5>
+        <h2>TRAVEL WITH WANDER INDIA</h2>
+        <p>Welcome to Wander India, your ultimate travel companion for exploring the diverse and vibrant landscapes of India. From the majestic forts of Rajasthan to the serene backwaters of Kerala, we bring you closer to the heart of India's rich culture and natural beauty. Whether you seek adventure, relaxation, or a spiritual retreat, our meticulously curated packages are designed to provide an unforgettable experience. Discover hidden gems, indulge in local cuisines, and immerse yourself in the stories that make India truly unique. Join us on a journey where every destination is more than just a place, it's an experience waiting to be explored.</p>
+    </div>
+    <div class="image-content">
+        <img src="https://th.bing.com/th/id/R.f48979db8ac30852aad9cbb75e7f9a4c?rik=CST%2fXduYAElL9A&riu=http%3a%2f%2fwww.rajgovt.org%2fwp-content%2fuploads%2f2020%2f03%2fTravel_India-2048x1121.jpg&ehk=mB%2feecBBoEwAZsxNWiy9ybpUBLkE3ZpR3WMQdBblUnk%3d&risl=&pid=ImgRaw&r=0" alt="Wander India">
+    </div>
+</div>
+
+<!--destinations section-->
+<section class="packages" id="packages">
+    <h1 class="heading">
+        <span>o</span>
+        <span>u</span>
+        <span>r</span>
+        <span class="space"></span>
+        <span>t</span>
+        <span>o</span>
+        <span>p</span>
+        <span class="space"></span>
+        <span>d</span>
+        <span>e</span>
+        <span>s</span>
+        <span>t</span>
+        <span>i</span>
+        <span>n</span>
+        <span>a</span>
+        <span>t</span>
+        <span>i</span>
+        <span>o</span>
+        <span>n</span>
+        <span>s</span>
+    </h1>
+    <div class="box-container">
+        <div class="box">
+            <img src="https://media.istockphoto.com/id/467004637/photo/mountains-river.jpg?s=612x612&w=0&k=20&c=2LeOwUVbfkq3VuURLraa1kSZFk0EBv2TLXs5IroKOfE=" alt="MANALI">
+            <div class="content">
+                <h3><i class="fas fa-map-marker-alt"></i> MANALI</h3>
+                <p>Manali is a town, near Kullu town in Kullu district in the Indian state of Himachal Pradesh. It is situated in the northern end of the Kullu Valley, formed by the Beas River.</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <a href="#" class="btn">Explore More</a>
+            </div>
+        </div>
+        <div class="box">
+            <img src="https://media.istockphoto.com/id/1385977424/photo/marine-drive-mumbai.jpg?s=612x612&w=0&k=20&c=__hSRJ1xUhqlVoP7I14IJf3IP6ivhFrfgRJJC8aEiDM=" alt="BOMBAY">
+            <div class="content">
+                <h3><i class="fas fa-map-marker-alt"></i> BOMBAY</h3>
+                <p>Mumbai formerly known as Bombay is the capital city of Maharashtra. Mumbai is the financial capital and the most populous city of India with an estimated population of 12.5 million.</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <a href="#" class="btn">Explore More</a>
+            </div>
+        </div>
+        <div class="box">
+            <img src="port.jpg" alt="PORT BLAIR">
+            <div class="content">
+                <h3><i class="fas fa-map-marker-alt"></i> PORT BLAIR</h3>
+                <p>Port Blair is the capital city of the Andaman and Nicobar Islands, a union territory of India in the Bay of Bengal. It is also the local administrative sub-division of the islands.</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <a href="#" class="btn">Explore More</a>
+            </div>
+        </div>
+    </div>
+</section><br><br><br>
+
+
+<!--packages section-->
+<section class="packages" id="packages">
+    <h1 class="heading">
+        <span>o</span>
+        <span>u</span>
+        <span>r</span>
+        <span class="space"></span>
+        <span>t</span>
+        <span>o</span>
+        <span>p</span>
+        <span class="space"></span>
+        <span>p</span>
+        <span>a</span>
+        <span>c</span>
+        <span>k</span>
+        <span>a</span>
+        <span>g</span>
+        <span>e</span>
+        <span>s</span>
+    </h1>
+    <div class="box-container">
+        <div class="box">
+            <img src="https://i.pinimg.com/564x/c6/cd/90/c6cd90256c53f23589b6b903b0b4eee0.jpg" alt="Malabar">
+            <div class="content">
+                <h3><i class="fas fa-map-marker-alt"></i> MALABAR TOUR</h3>
+                <p>Malabar, a coastal region in the southwestern part of India, is known for its rich cultural heritage, lush landscapes, and scenic beauty. It is a popular destination for travelers seeking an authentic and less commercialized experience in India.</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <a href="packages.html" class="btn">Explore More</a>
+            </div>
+        </div>
+        <!-- Add more package boxes as needed -->
+        <div class="box">
+            <img src="https://i.pinimg.com/474x/1b/0d/fe/1b0dfeb9d9fc0ca12ef3f573f86377ca.jpg" alt="Ladakh">
+            <div class="content">
+                <h3><i class="fas fa-map-marker-alt"></i> MAJESTIC LADAKH TOURS</h3>
+                <p>Exploring Ladakh is an adventure into one of the most unique and breathtaking regions in the world. Known for its rugged landscapes, high-altitude deserts, and ancient monasteries, Ladakh offers a range of majestic experiences.</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <a href="packages.html" class="btn">Explore More</a>
+            </div>
+        </div>
+        <!-- Example box -->
+        <div class="box">
+            <img src="https://i.pinimg.com/474x/d5/f7/d2/d5f7d2e179b3b03570a4fcd58abfbed0.jpg" alt="Jaipur">
+            <div class="content">
+                <h3><i class="fas fa-map-marker-alt"></i> FORTS AND PALACES</h3>
+                <p> Forts and palaces around the world represent a fascinating array of architectural styles, historical eras, and cultural significance. Each magnificent structure tells a unique story of the people and pivotal events that shaped its creation. </p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <a href="packages.html" class="btn">Explore More</a>
+            </div>
+        </div>
+    </div>
+</section><br><br><br>
+
+
+<!--services section-->
+<section class="services" id="services">
+    <h1 class="heading">
+        <span>s</span>
+        <span>e</span>
+        <span>r</span>
+        <span>v</span>
+        <span>i</span>
+        <span>c</span>
+        <span>e</span>
+        <span>s</span>
+    </h1><br><br>
+    <div class="box-container">
+        <div class="box">
+            <i class="fas fa-hotel"></i>
+            <h3>AFFORDABLE HOTELS</h3>
+            <p>Explore a selection of budget-friendly hotels across India, carefully curated to offer comfort and convenience without breaking the bank.</p>
+        </div>
+        <div class="box">
+            <i class="fas fa-bullhorn"></i>
+            <h3>SAFETY GUIDE</h3>
+            <p>Stay informed and prepared with our comprehensive safety guide, tailored to ensure a secure and enjoyable travel experience in India.</p>
+        </div>
+        <div class="box">
+            <i class="fas fa-hiking"></i>
+            <h3>ADVENTURES</h3>
+            <p>Dive into exciting adventures with our detailed itineraries, featuring activities like bike tours and game tours to enhance your travel journey.</p>
+        </div>
+    </div>
+</section><br>
+
+
+<!--gallery-->
+<section class="gallery" id="gallery">
+    <h1 class="heading">
+    <span>e</span>
+    <span>v</span>
+    <span>e</span>
+    <span>n</span>
+    <span>t</span>
+    <span>s</span>
+   </h1>
+    <div class="box-container">
+        <div class="box">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Barsana_Holi_Festival.jpg/1200px-Barsana_Holi_Festival.jpg">
+            <div class="content">
+                <h3>LATHMAR HOLI</h3>
+                <p>Lathmar Holi is a Hindi term where 'Lath' means stick and 'mar' means beat, symbolizing a playful Holi with sticks and colors. Thandai and Holi go hand in hand, so don't miss out!</p>
+                <a href="#" class="btn">See more</a>
+            </div>
+        </div>
+        <div class="box">
+            <img src="event.png">
+            <div class="content">
+                <h3>BANDLAND</h3>
+                <p>Bandland in Bangalore is a lively hub for all passionate music lovers. 'Band' refers to musical groups, while 'land' indicates a place. Be sure to check it out if you're ever in Bangalore!</p>
+                <a href="#" class="btn">See more</a>
+            </div>
+        </div>
+        <div class="box">
+            <img src="event2.webp">
+            <div class="content">
+                <h3>WENCH FILM FESTIVAL</h3>
+                <p>Wench Film Festival is a celebration of films made by and for women. 'Wench' signifies strong, independent women, while 'festival' highlights a lively event. Be sure to experience it if you love cinema!</p>
+                <a href="#" class="btn">See more</a>
+            </div>
+        </div> 
+    </div>
+</section>
+
+<!--footer-->
+<section class="footer">
+    <div class="box-container">
+        <div class="box">
+            <h1 class="credit" style="text-align: left;"><span> WANDER</span> INDIA</h1>
+            <p>Ready for your next adventure?<br>
+                Let's make it unforgettable.<br><br>
+                Start planning your dream trip with us and explore the world
+            </p>
+        </div>
+        <div class="box">
+            <h3>Quick Links</h3>
+            <a href="#">Home</a>
+            <a href="destination.html">Destinatins</a>
+            <a href="packages.html">Packages</a>
+            <a href="events.html">Events</a>
+            <a href="agent.html">Login</a>
+        </div>
+        <div class="box">
+            <h3>Follow Us</h3>
+            <a href="destination.html">Facebook</a>
+            <a href="packages.html">Instagram</a>
+            <a href="events.html">Twitter</a>
+            <a href="agent.html">Linkedin</a>
+        </div>
+    </div>
+    <h1 class="credit">Created By<span> WANDER</span> INDIA | &copy; 2024 All Rights Reserved!</h1>
+</section>
+</body>
+</html>

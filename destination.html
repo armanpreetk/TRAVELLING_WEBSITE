@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WANDER INDIA</title>
+    <!--font-awesome--->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+</head>
+<style>
+    body{
+        height: 300rem;
+    }
+    /*navbar*/
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap');
+    :root{
+        --pink: orange;
+    }
+
+    *{
+        font-family:'Nunito',sans-serif;
+        margin:0;
+        padding:0;
+        box-sizing: border-box;
+        text-transform: capitalize;
+        outline: none;
+        border:none;
+        text-decoration: none;
+        transition: all .2s linear;
+    }
+
+    html{
+        font-size: 62.5%;
+        overflow-x: hidden;
+        scroll-padding-top: 6rem;
+        scroll-behavior: smooth;
+    }
+
+    .btn{
+        display:inline-block;
+        margin-top: 1rem;
+        background: var(--pink);
+        color:#fff;
+        padding: .8rem 3rem;
+        border: .2rem solid ;
+        cursor: pointer;
+        font-size: 1.7rem;
+    }
+
+    .btn:hover{
+        background: rgb(21, 74, 74);
+    }
+
+    header{
+        position: fixed;
+        top:0; left:0; right:0;
+        background: rgb(21, 74, 74);
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.5rem 5%;
+    }
+
+    header .logo{
+        font-size: 2.4rem;
+        font-weight: bolder;
+        color: #fff;
+        text-transform: uppercase;
+    }
+
+    header .logo span{
+        color: var(--pink);
+    }
+
+    header .navbar a{
+        color: #fff;
+        font-size: 2rem;
+        margin: 0 .8rem;
+    }
+
+    header .navbar a:hover{
+    color:var(--pink);
+    }
+
+    header .icons i{
+        font-size: 2.4rem;
+        color:#fff;
+        margin-right: 2rem;
+    }
+    
+    header .navbar a:hover,
+    header .icons i:hover,
+    header .icons #login-btn:hover {
+        color: var(--pink) !important;
+    }
+
+
+    header .search-bar-container label:hover{
+        color: var(--pink);
+    }
+
+    .login-form-container{
+        position:fixed;
+        top:-100%; left:0;
+        min-height:100vh;
+        width:100%;
+        z-index: 10000;
+        background: rgb(21, 74, 74, .7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: top 0.3s ease; /* Add smooth transition for appearance */
+    }
+
+    .login-form-container.active {
+        top: 0;
+    }
+
+    .login-form-container form{
+        margin: 2rem;
+        padding: 1.4rem 2rem;
+        border-radius: .5rem;
+        background: #fff;
+        width: 50rem;
+    }
+
+    .login-form-container form h3{
+        font-size: 3rem;
+        color: black;
+        text-transform: uppercase;
+        text-align: center;
+        padding: 1rem 0;
+    }
+
+    .login-form-container form .box{
+        width: 100%;
+        padding: 1rem;
+        font-size: 1.7rem;
+        color: rgb(21, 74, 74);
+        margin: .6rem 0;
+        border: .2rem solid rgb(21, 74, 74, .7);
+        text-transform: none;
+    }
+
+    .login-form-container form .box:focus{
+        border-color: var(--pink);
+    }
+
+    .login-form-container form #remember{
+        margin: 2rem 0;
+    }
+
+    .login-form-container form label{
+        font-size: 1.5rem;;
+    }
+
+    .login-form-container form .btn{
+        display:block;
+        width:100%;
+    }
+
+    .login-form-container form p{
+        padding: .5rem 0;
+        font-size: 1.5rem;
+        color: black;
+    }
+
+    .login-form-container form p a{
+        color: var(--pink);
+    }
+
+    .login-form-container form p a:hover{
+        color: black;
+        text-decoration: underline;
+    }
+
+    .login-form-container #form-close{
+        position: absolute;
+        top: 2rem; right:3rem;
+        font-size: 5rem;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    #menu-bar{
+        color:#fff;
+        border: .1rem solid #fff;
+        border-radius: .2rem;
+        font-size: 3rem;
+        padding: .5rem 1.2rem;
+        cursor: pointer;
+        display:none;
+    }
+
+    /* media queries*/
+    @media(max-width:1200px){
+        html{
+            font-size: 55%;
+        }
+    }
+    @media(max-width:991px){
+        header{
+            padding: 2rem;
+        }
+        section{
+            padding: 2rem;
+        }
+    }
+    @media(max-width:768px){
+        #menu-bar{
+            display: initial;
+        }
+        header .navbar{
+            position: absolute;
+            top: 100%; right:0; left:0;
+            background: rgb(21, 74, 74);
+            border-top: .1rem solid rgb(21, 74, 74);
+            padding: 1rem 2rem;
+            clip-path: polygon(0 0, 100% 0, 100% 0 , 0 0);
+        }
+        header .navbar.active{
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        }
+        header .navbar a{
+            display: block;
+            border-radius: .5rem;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            background: rgb(39, 110, 110);
+        }
+    }
+    @media(max-width:450px){
+        html{
+            font-size: 50%;
+        }
+        .heading span{
+             font-size: 2.5rem;
+        }
+    }
+
+
+
+/*Location*/
+.location-content{
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.col-content{
+    position: relative;
+    filter:brightness(95%);
+    transition: all 0.3s cubic-bezier(0.445,0.05,0.55,0.95);
+    margin-bottom: 20px;
+}
+
+.location-content a {
+    flex: 1 1 calc(25% - 20px); /* 4 cards per row with spacing */
+    max-width: calc(25% - 20px); /* 4 cards per row with spacing */
+}
+
+.col-content img{
+    margin-bottom: 40px;
+    height: 500px;
+    border-radius: 27px;
+    width: 100%;
+    
+}
+
+.col-content h5{
+    position: absolute;
+    font-size: 25px;
+    color: white;
+    font-weight: 500;
+    left: 20px;
+    bottom: 105px;
+    cursor: pointer;
+}
+
+.col-content p{
+    position: absolute;
+    font-size: 20px;
+    color: white;
+    left: 20px;
+    bottom: 80px;
+    cursor: pointer;
+}
+
+.col-content:hover{
+    filter: brightness(120%);
+    transform: scale(1.03);
+    cursor: pointer;
+}
+  
+/*footer*/
+.footer{
+            background: rgb(21, 74, 74);
+        }
+        .footer .box-container{
+            display: flex;
+            flex-wrap:wrap;
+            gap:1.5rem;
+
+        }
+        .footer .box-container .box{
+            padding: 1rem 0;
+            flex: 1 1 25rem;
+        }
+        .footer .box-container .box h3{
+            font-size:2rem;
+            padding:.7rem;
+            color: #fff;
+
+        }
+        .footer .box-container .box p{
+            font-size:1.5rem;
+            padding:.7rem;
+            color: #eee;
+        }
+        .footer .box-container .box a{
+            display:block;
+            font-size:1.5rem;
+            padding:.7rem;
+            color: #fff;
+            
+        }
+        .footer .box-container .box a:hover{
+            color:var(--pink);
+            text-decoration: underline;
+        }
+        .footer .credit{
+            text-align: center;
+            padding:2rem 1rem;
+            margin-top: 1rem;
+            font-size: 1.5rem;
+            font-weight: normal;
+            color:#fff;
+            border-top: .1rem solid rgba(255, 255, 255, .2);
+        }
+        .footer .credit span{
+            color: var(--pink);
+        }
+
+.heading {
+    text-align: center;
+    padding: 2.5rem 0;
+    color: rgb(21, 74, 74);
+}
+
+.heading span {
+    font-size: 3.5rem;
+    background: rgba(255, 165, 0, .2);
+    color: var(--pink);
+    border-radius: .5rem;
+    padding: .2rem 1rem;
+}
+
+.heading span.space {
+    background: none;
+}
+
+</style> 
+<body>
+    <!--navbar-->
+    <header>
+        <div id="menu-bar" class="fas fa-bars"></div>
+        <a href="#" class="logo"><span>WANDER</span> INDIA</a>
+        <nav class="navbar">
+            <a href="index.html">Home</a>
+            <a href="destination.html">Destinations</a>
+            <a href="packages.html">Packages</a>
+            <a href="#">Events</a>
+            <a href="agent.html">Login</a>
+        </nav>
+    <div class="icons">
+        <i class="fas fa-user" id="login-btn"></i>   
+    </div>
+    </header>
+
+ <!--login-form-container-->
+    <div class="login-form-container">
+        <i class="fas fa-times" id="form-close"></i>
+        <form action="">
+            <h3>Login</h3>
+            <input type="email" class="box" placeholder="Enter your email">
+            <input type="password" class="box" placeholder="Enter your password">
+            <input type="submit" value="login now" class="btn">
+            <input type="checkbox" id="remember">
+            <label for="remember">Remember me</label>
+            <p>Forgot password? <a href="#">Click here</a></p>
+            <p>Don't have an account? <a href="#">Register now</a> </p>
+        </form>
+    </div>
+  
+<!--content-->
+
+
+<div class="bg-image" 
+     style="background-image: url('https://www.shutterstock.com/image-photo/dark-teal-canvas-grungy-background-260nw-1808758480.jpg');
+            height: 43vh; 
+            position: relative; 
+            background-size: cover; 
+            background-position: center;">
+  
+  <div style="position: absolute; 
+              top: 50%; 
+              left: 10%; 
+              transform: translateY(-50%); 
+              color: white; 
+              font-size: 2.5em; 
+              font-weight: bold; 
+              font-family: Arial, sans-serif;">
+              
+    <div style="font-size: 0.6em; 
+                font-weight: normal; 
+                margin-bottom: 5px; 
+                letter-spacing: 1px;">
+        <a href="index.html" style="color: white; text-decoration: none;">Home</a> / <a href="location.html" style="color: white; text-decoration: none;">Destinations</a>
+    </div>
+    DESTINATIONS
+  </div>
+
+</div><br><br><br><br><br>
+
+<section class="locations" id="locations">
+        <h1 class="heading">
+        <span>o</span>
+        <span>u</span>
+        <span>r</span>
+        <span class="space"></span>
+        <span>t</span>
+        <span>o</span>
+        <span>p</span>
+        <span class="space"></span>
+        <span>d</span>
+        <span>e</span>
+        <span>s</span>
+        <span>t</span>
+        <span>i</span>
+        <span>n</span>
+        <span>a</span>
+        <span>t</span>
+        <span>i</span>
+        <span>o</span>
+        <span>n</span>
+        <span>s</span>
+        </h1><br><br>
+    <div class="location-content">
+        
+
+        <a href="locations.html#dubai" target="_blank"><div class="col-content">
+            <img src="https://media.istockphoto.com/id/467004637/photo/mountains-river.jpg?s=612x612&w=0&k=20&c=2LeOwUVbfkq3VuURLraa1kSZFk0EBv2TLXs5IroKOfE=" alt="">
+            <h5>Himachal Pradesh</h5>
+            <p>Manali</p>
+        </div></a>
+
+        <a href="./locations.html#geneva" target="_blank"><div class="col-content">
+            <img src="https://media.istockphoto.com/id/1385977424/photo/marine-drive-mumbai.jpg?s=612x612&w=0&k=20&c=__hSRJ1xUhqlVoP7I14IJf3IP6ivhFrfgRJJC8aEiDM=" alt="">
+            <h5>Maharashtra</h5>
+            <p>Mumbai</p>
+        </div></a>
+
+        <a href="./locations.html#port-blair" target="_blank"><div class="col-content">
+            <img src="l7.jpg" alt="">
+            <h5>Andaman & Nicobar</h5>
+            <p>Port Blair</p>
+        </div></a>
+
+        <a href="./locations.html#rome" target="_blank"><div class="col-content">
+            <img src="https://i.pinimg.com/736x/6a/26/b6/6a26b63857065090273b6e8ce452583c.jpg" alt="">
+            <h5>Punjab</h5>
+            <p>Amritsar</p>
+        </div></a>
+        </div><br>
+       
+        <div class="package-title" style="font-size: 1.8em">
+            <h1 class="heading">
+                <span>o</span>
+                <span>t</span>
+                <span>h</span>
+                <span>e</span>
+                <span>r</span>
+                <span class="space"></span>
+                <span>d</span>
+                <span>e</span>
+                <span>s</span>
+                <span>t</span>
+                <span>i</span>
+                <span>n</span>
+                <span>a</span>
+                <span>t</span>
+                <span>i</span>
+                <span>o</span>
+                <span>n</span>
+                <span>s</span>
+                </h1><br>
+        </div>
+        <div class="location-content">
+                
+        
+            <a href="./locations.html#kashmir" target="_blank"><div class="col-content">
+                <img src="https://media.istockphoto.com/id/159428920/photo/the-royal-palace-of-mysore.jpg?s=612x612&w=0&k=20&c=7Yc7Xg8lRE_L_r9g8neHczoFyfTb-hUMw_1sGbdHaD0=" alt="">
+                <h5>Karnataka</h5>
+                <p>Mysore</p>
+            </div></a>  
+    
+            <a href="locations.html#bali" target="  _blank"><div class="col-content">
+                <img src="https://media.istockphoto.com/id/513075607/photo/darjeeling-tea-plantation-with-himalaya-mountains-background-vertical.jpg?s=612x612&w=0&k=20&c=-lpseO0qPH2wbjtqF5IZS25Iyky_gHAvARPMDtA9NIE=" alt="">
+                <h5>West Bengal</h5>
+                <p>Darjeeling</p>
+            </div></a>
+            
+            <a href="./locations.html#paris" target="_blank"><div class="col-content">
+                <img src="https://media.istockphoto.com/id/178801475/photo/crab-catchers-sunrise-on-pondicherry-beach.jpg?s=612x612&w=0&k=20&c=B_bMlEPqotz5g5grYDmDtc7xh90PKxbJrIrNn5Lk3k0=" alt="">
+                <h5>South India</h5>
+                <p>Pondicherry</p>
+            </div></a>
+  
+            <a href="./locations.html#istanbul" target="_blank"><div class="col-content">
+                <img src="https://w0.peakpx.com/wallpaper/101/152/HD-wallpaper-shimla-beautiful-chirch-mall-road-the-ridge.jpg" alt="">
+                <h5>Himachal Pradesh</h5>
+                <p>Shimla</p>
+            </div></a>
+
+        <a href="./locations.html#kashmir" target="_blank"><div class="col-content">
+            <img src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/taj-mahal-agra-pushp-deep-pandey--2kphotography.jpg" alt="">
+            <h5>Uttar Pradesh</h5>
+            <p>Agra</p>
+        </div></a>     
+
+        <a href="./locations.html#paris" target="_blank"><div class="col-content">
+            <img src="https://media.istockphoto.com/id/535770549/it/foto/verticale-ritratto-di-bella-spiaggia-in-tropici.jpg?s=612x612&w=0&k=20&c=AZoiYp7Y3HHFup-Uxl65Xn6DrWg0R9VJ2zkFglTzDSc=" alt="">
+            <h5>Western India</h5>
+            <p>Goa</p>
+        </div></a>
+
+        <a href="locations.html#bali" target="  _blank"><div class="col-content">
+            <img src="https://images.fineartamerica.com/images-medium-large-5/shikara-nagin-lake-srinagar-kashmir-travel-photographer-specialized-in-asia--sylvain-brajeul.jpg" alt="">
+            <h5>Jammu and Kashmir</h5>
+            <p>Srinagar</p>
+        </div></a>
+
+        <a href="./locations.html#istanbul" target="_blank"><div class="col-content">
+            <img src="https://lh6.googleusercontent.com/proxy/LRO2Dt-Zkx5rli-DpM8mOc0eR9mZa07-Fg9BxLMTvx9_cs5C5cfQ-tbHdFQMfA_nR8G_9Q0c28LzfQoSHboPoAAA0tY" alt="">
+            <h5>Rajasthan</h5>
+            <p>Udaipur</p>
+        </div></a>
+
+        <a href="locations.html#bali" target="  _blank"><div class="col-content">
+            <img src="https://media.istockphoto.com/id/1387185746/photo/paraglider-fly-from-mount-babadag.jpg?s=612x612&w=0&k=20&c=yuxnoi8cLPG0IC7e0s7DoTcPmcdOBDb3qhS6JpIeI4w=" alt="">
+            <h5>Himachal Pradesh</h5>
+            <p>Bir</p>
+        </div></a>
+
+        <a href="./locations.html#paris" target="_blank"><div class="col-content">
+            <img src="https://cdn.getyourguide.com/img/tour/16b60c7c6da5a1b1c7515af2804e9c647075649179d788295cf828c79c715af2.jpg/vertical_520_780.jpg" alt="">
+            <h5>Uttarakhand</h5>
+            <p>Nainital</p>
+        </div></a>
+
+        <a href="./locations.html#istanbul" target="_blank"><div class="col-content">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsdOvP4eth0RmIZ-4PISAxPd2nCGHj8KRwjQ&s" alt="">
+            <h5>Kerala</h5>
+            <p>Munnar</p>
+        </div></a>
+      
+        <a href="./locations.html#kashmir" target="_blank"><div class="col-content">
+            <img src="https://i.pinimg.com/736x/5a/f7/a4/5af7a4501524a3c937aa9f5aa4d0be62.jpg" alt="">
+            <h5>North India</h5>
+            <p>New Delhi</p>
+        </div></a>
+    </div>
+</section>
+
+<!--footer-->
+<section class="footer">
+    <div class="box-container">
+        <div class="box">
+            <h1 class="credit" style="text-align: left;"><span> WANDER</span> INDIA</h1>
+            <p>Ready for your next adventure?<br>
+                Let's make it unforgettable.<br><br>
+                Start planning your dream trip with us and explore the world
+            </p>
+        </div>
+        <div class="box">
+            <h3>Quick Links</h3>
+            <a href="index.html">Home</a>
+            <a href="destination.html">Destinatins</a>
+            <a href="packages.html">Packages</a>
+            <a href="events.html">Events</a>
+            <a href="agent.html">Login</a>
+        </div>
+        <div class="box">
+            <h3>Follow Us</h3>
+            <a href="destination.html">Facebook</a>
+            <a href="packages.html">Instagram</a>
+            <a href="events.html">Twitter</a>
+            <a href="agent.html">Linkedin</a>
+        </div>
+    </div>
+    <h1 class="credit">Created By<span> WANDER</span> INDIA | &copy; 2024 All Rights Reserved!</h1>
+</section>
+
+
+
+<!--login-page-->
+<script>
+    let formBtn = document.querySelector('#login-btn');
+    let loginForm = document.querySelector('.login-form-container');
+    let formClose = document.querySelector('#form-close');
+    let menu = document.querySelector('#menu-bar');
+    let navbar = document.querySelector('.navbar');
+    document.addEventListener('DOMContentLoaded', () => {
+    let videoBtns = document.querySelectorAll('.vid-btn');
+    let videoSlider = document.querySelector('#video-slider');
+
+    videoBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Remove the active class from the currently active button
+            const activeBtn = document.querySelector('.controls .vid-btn.active');
+            if (activeBtn) {
+                activeBtn.classList.remove('active');
+            }
+            // Add the active class to the clicked button
+            btn.classList.add('active');
+
+            // Update the source of the video slider
+            let src = btn.getAttribute('data-src');
+            console.log(`Changing video source to: ${src}`); // Debug log
+            videoSlider.src = src;
+        });
+    });
+});
+    window.onscroll = () => {
+        menu.classList.remove('fa-times'); 
+        navbar.classList.remove('active');
+    }
+    menu.addEventListener('click', () => {
+    menu.classList.toggle('fa-times'); 
+    navbar.classList.toggle('active');   
+    });
+    formBtn.addEventListener('click', () => {
+    loginForm.classList.add('active'); // Add class to show form
+    });
+    formClose.addEventListener('click', () => {
+    loginForm.classList.remove('active'); // Remove class to hide form
+    });
+
+</script>
+
+</body>
+</html>
